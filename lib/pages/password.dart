@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class Password extends StatefulWidget {
   const Password({super.key});
@@ -56,6 +57,12 @@ class _PasswordState extends State<Password> {
                 focusNode: _focusNode,
                 controller: _controller,
                 keyboardType: TextInputType.number,
+                onChanged: (value){
+                  setState(() {
+                    _controller.text = value.replaceAll(RegExp('[^0-9]'), '');
+                  });
+                },
+                // inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               ),
             ),
             GestureDetector(
